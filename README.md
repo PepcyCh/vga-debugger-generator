@@ -55,7 +55,7 @@ pc: 00000000   inst: 00000000
 rd: 00   reg_wen: 0   reg_i_data: 00000000
 ```
 
-其中 `== block_name ==` 标识了一个块，其下的 `wire: 00000000` 表示 Verilog 代码中一个名为 `wire` 的线，`0` 是显示其十六进制值的占位符。
+其中 `== block_name ==` 标识了一个块（第一个 `== block_name ==` 之前的部分为匿名块），其下的 `wire: 00000000` 表示 Verilog 代码中一个名为 `wire` 的线，`0` 是显示其十六进制值的占位符。
 
 程序使用占位符 `0` 的个数决定一个线的宽度，一个 `0` 会被认为是 1 个 bit 宽的线，否则认为是 4 倍的 `0` 的数目个 bits 宽。如果实际位宽与之不符，可以在配置文件中设置。
 
@@ -67,7 +67,7 @@ rd: 00   reg_wen: 0   reg_i_data: 00000000
 
 配置文件为一个 `.json` 文件，下面给出了所有支持的配置。具体的使用可以参考 `config_example` 中的文件。
 
-```json
+```
 {
     "module_name": "top_module_name", // required
     "template_file": "place of template file", // required

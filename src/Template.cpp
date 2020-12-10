@@ -39,7 +39,7 @@ std::optional<Template> Template::From(std::ifstream &fin, int header_lines, int
     int line_count = header_lines;
     while (fin) {
         std::getline(fin, line);
-        if (line.empty() || !fin) {
+        if (!fin) {
             break;
         }
         ++line_count;

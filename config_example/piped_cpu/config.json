@@ -1,6 +1,6 @@
 {
     "module_name": "Core",
-    "template_file": "./config/vga_debugger_template.txt",
+    "template_file": "./config_example/piped_cpu/vga_debugger_template.txt",
     "output_dir": "./output/",
     "mem_file": "vga_debugger.mem",
     "dbg_header": "vga_debugger.vh",
