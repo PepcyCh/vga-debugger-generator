@@ -90,7 +90,7 @@ rd: 00   reg_wen: 0   reg_i_data: 00000000
             "wire1": 5,
             "wire2": 3
         },
-        "block2": "*group1" // "*group_name" refer to a group of wires, this can only be used in "len_bits", "wire_prefix", "wire_suffix" and "submodule"
+        "*group1": 7 // "*group_name" refer to a group of wires, this can only be used in "len_bits", "wire_prefix", "wire_suffix" and "submodule"
     },
     "wire_prefix": {
         "*group1": "group1_prefix",
@@ -109,19 +109,22 @@ rd: 00   reg_wen: 0   reg_i_data: 00000000
     "submodule": [
         {
             "name": "submodule1",
-            "wires": "*group1"
+            "wires": {
+                "*group1": [] // a group reference, "[]" is necessary
+            }
         },
         {
             "name": "submodule2",
-            "parent": "submodule1", // "module_name" by defauly
+            "parent": "submodule1", // "module_name" by default
             "wires": {
-                "block3": [ "wire1", "wire2", "wire3" ]
+                "block3": [ "wire1", "wire2", "wire3" ],
+                "block4": [ "wire1", "wire10" ]
             }
         }
     ],
     "wire_group": [
         {
-        	"name": "group1",
+            "name": "group1",
             "wires": {
                 "block1": [ "wire4", "wire5", "wire6" ],
                 "block2": [ "wire4", "wire5" ],

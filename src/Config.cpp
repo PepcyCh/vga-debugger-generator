@@ -210,27 +210,28 @@ bool ParseSubmodule(const json &json, Config &config) {
                     return false;
                 }
                 auto wires_arr = value.get<json::array_t>();
-                for (const auto &wire : wires_arr) {
-                    if (!wire.is_string()) {
+
+                if (key.length() > 0 && key[0] == '*') { // group
+                    auto group_name = key.substr(1);
+                    if (config.groups.count(group_name) && wires_arr.empty()) {
+                        for (const auto &wire : config.groups[group_name].wires) {
+                            submodule.wires.emplace_back(wire.first, wire.second);
+                        }
+                        continue;
+                    } else {
                         return false;
                     }
-                    submodule.wires.emplace_back(key, wire.get<std::string>());
-                }
-            }
-        } else if (wires_obj.is_string()) {
-            auto group_name = wires_obj.get<std::string>();
-            if (group_name.length() > 0 && group_name[0] == '*') {
-                group_name = group_name.substr(1);
-                if (config.groups.count(group_name)) {
-                    for (const auto &wire : config.groups[group_name].wires) {
-                        submodule.wires.emplace_back(wire.first, wire.second);
+                } else { // normal
+                    for (const auto &wire : wires_arr) {
+                        if (!wire.is_string()) {
+                            return false;
+                        }
+                        submodule.wires.emplace_back(key, wire.get<std::string>());
                     }
-                } else {
-                    return false;
                 }
-            } else {
-                return false;
             }
+        } else {
+            return false;
         }
 
         if (config.submodule.count(submodule.name) || submodule.name == config.module_name) {

@@ -44,7 +44,9 @@
     "submodule": [
         {
             "name": "RegFile",
-            "wires": "*regs"
+            "wires": {
+                "*regs": []
+            }
         },
         {
             "name": "Csr",
