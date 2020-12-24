@@ -138,6 +138,27 @@ bool ParseWireSuffix(const json &json, Config &config) {
     return true;
 }
 
+bool ParseWireName(const json &json, Config &config) {
+    if (!json.is_object()) {
+        return false;
+    }
+
+    for (const auto &[key, value] : json.items()) {
+        if (!value.is_object()) {
+            return false;
+        }
+
+        for (const auto &[key2, value2] : value.items()) {
+            if (!value2.is_string()) {
+                return false;
+            }
+            config.wire_name[key][key2] = value2.get<std::string>();
+        }
+    }
+
+    return true;
+}
+
 bool ParseLenBits(const json &json, Config &config) {
     if (!json.is_object()) {
         return false;
@@ -374,6 +395,12 @@ std::optional<Config> Config::From(std::ifstream &fin) {
         auto obj = json["wire_suffix"];
         if (!ParseWireSuffix(obj, config)) {
             errors.emplace_back("Field 'wire_suffix' has a wrong type or wrong group reference");
+        }
+    }
+    if (json.contains("wire_name")) {
+        auto obj = json["wire_name"];
+        if (!ParseWireName(obj, config)) {
+            errors.emplace_back("Field 'wire_name' has a wrong type");
         }
     }
     if (json.contains("submodule")) {

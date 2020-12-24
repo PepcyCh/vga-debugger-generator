@@ -34,6 +34,7 @@ struct Config {
     std::unordered_map<std::string, std::unordered_map<std::string, std::string>> wire_prefix;
     std::unordered_map<std::string, std::string> block_suffix;
     std::unordered_map<std::string, std::unordered_map<std::string, std::string>> wire_suffix;
+    std::unordered_map<std::string, std::unordered_map<std::string, std::string>> wire_name;
 
     std::unordered_map<std::string, std::unordered_map<std::string, int>> len_bits;
     

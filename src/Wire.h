@@ -6,6 +6,7 @@
 struct Wire {
     std::string name;
     std::string full_name;
+    std::string code_name;
     std::string module_name;
     int len_hex;
     int len_bits;

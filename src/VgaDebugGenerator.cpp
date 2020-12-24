@@ -89,6 +89,11 @@ void VgaDebugGenerator::ProcessConfig() {
             } else {
                 wire.full_name = wire.full_name + block_suffix;
             }
+            if (config.wire_name[block.name].count(wire.name)) {
+                wire.code_name = config.wire_name[block.name][wire.name];
+            } else {
+                wire.code_name = wire.full_name;
+            }
 
             wire.module_name = config.FindSubmoduleOfWire(block.name, wire.name);
             modules[wire.module_name].wires.emplace_back(wire);
@@ -263,7 +268,7 @@ void VgaDebugGenerator::Generate_Outputs(const Module &module, std::ofstream &fo
 void VgaDebugGenerator::Generate_Assignments(const Module &module, std::ofstream &fout) {
     fout << "\n\n`define VGA_DBG_" << module.name << "_Assignments";
     for (const auto &wire : module.wires) {
-        fout << " \\\n    assign dbg_" << wire.full_name << " = " << wire.full_name << ";";
+        fout << " \\\n    assign dbg_" << wire.full_name << " = " << wire.code_name << ";";
     }
 }
 void VgaDebugGenerator::Generate_Arguments(const Module &module, std::ofstream &fout) {

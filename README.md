@@ -106,6 +106,12 @@ rd: 00   reg_wen: 0   reg_i_data: 00000000
             "wire2": "block2_wire2_suffix"
         }
     },
+    "wire_name": {
+        "block3": {
+            "wire1": "wire[0]",
+            "wire2": "wire[1]"
+        }
+    },
     "submodule": [
         {
             "name": "submodule1",
