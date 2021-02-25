@@ -57,7 +57,7 @@
     ],
     "wire_group": [
         {
-        	"name": "regs",
+            "name": "regs",
             "wires": {
                 "Id": [
                     "x0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",

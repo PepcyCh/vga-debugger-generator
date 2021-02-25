@@ -5,6 +5,7 @@
 compile_commands.json
 
 build
+cmake-build-*
 output
 
 test_example

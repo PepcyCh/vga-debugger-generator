@@ -59,7 +59,7 @@ rd: 00   reg_wen: 0   reg_i_data: 00000000
 
 程序使用占位符 `0` 的个数决定一个线的宽度，一个 `0` 会被认为是 1 个 bit 宽的线，否则认为是 4 倍的 `0` 的数目个 bits 宽。如果实际位宽与之不符，可以在配置文件中设置。
 
-一个块下的线在代码中可以有统一的前后缀，如代码中使用 `pre_name_suf` 的名字来定义这些线，可以在 VGA 上只显示 `name` 的名字，然后在配置文件中指明前后缀。也可以为单一的线指明前后缀。
+一个块下的线在代码中可以有统一的前后缀，如代码中使用 `pre_name_suf` 的名字来定义这些线，可以在 VGA 上只显示 `name` 的名字，然后在配置文件中指明前后缀。也可以为单一的线指明前后缀。线的前缀后缀（`wire_prefix` 与 `wire_suffix`）会覆盖块的前缀后缀（`block_prefix` 与 `block_suffix`），线的名称（`wire_name`）会覆盖线的前缀后缀。
 
 示例的模板文件中，`Ex` 块中的各个线在代码中的名字就是 `IdEx_xxx`，其中也有一些的前缀是 `Ex_`，如 `forward_rs1`。具体可以参考 `config_example` 中的文件。
 
@@ -76,7 +76,7 @@ rd: 00   reg_wen: 0   reg_i_data: 00000000
     "dbg_header": "name of outoput .vh file", // required
     "header_lines": 1, // top 'header_lines' lines will be considered constant
     "template_width": 80, // 640x480 and 8x16 per char, so 80
-    "template_height": 30, // 640x480 and 8x16 per char, so 80
+    "template_height": 30, // 640x480 and 8x16 per char, so 30
     "block_prefix": {
         "block1": "block1_prefix",
         "block2": "block2_prefix"

@@ -32,7 +32,6 @@ private:
 
     void Generate();
     void Generate_Mem();
-    // TODO - VGA related
     void Generate_VgaDebugger();
     void Generate_VgaDisplay();
     void Generate_VgaInstance(std::ofstream &fout);

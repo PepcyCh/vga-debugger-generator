@@ -79,16 +79,19 @@ void VgaDebugGenerator::ProcessConfig() {
                 wire.len_bits = wire.len_hex == 1 ? 1 : wire.len_hex * 4;
             }
 
+            // prefix
             if (wire_prefix_block_flag && config.wire_prefix[block.name].count(wire.name)) {
                 wire.full_name = config.wire_prefix[block.name][wire.name] + wire.name;
             } else {
                 wire.full_name = block_prefix + wire.name;
             }
+            // suffix
             if (wire_suffix_block_flag && config.wire_suffix[block.name].count(wire.name)) {
                 wire.full_name = wire.full_name + config.wire_suffix[block.name][wire.name];
             } else {
                 wire.full_name = wire.full_name + block_suffix;
             }
+            // wire_name
             if (config.wire_name[block.name].count(wire.name)) {
                 wire.code_name = config.wire_name[block.name][wire.name];
             } else {
