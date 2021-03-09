@@ -1,3 +1,12 @@
+/*
+ * Description:
+ *   output color of a given input coordinates using template file
+ *   store values of wires
+ * 
+ * Author:
+ *   Pepcy Chen
+ */
+
 module VgaDisplay(
     input wire clk,
     input wire video_on,

@@ -2,18 +2,17 @@ cmake_minimum_required(VERSION 3.17)
 
 project(vga_debug_generator)
 
-include(FetchContent)
+include(cmake/CPM.cmake)
 
-FetchContent_Declare(
-    json
-    GIT_REPOSITORY https://github.com/nlohmann/json.git
-    GIT_TAG v3.7.3
+CPMAddPackage(
+    NAME nlohmann_json
+    VERSION 3.9.1
+    URL https://github.com/nlohmann/json/releases/download/v3.9.1/include.zip
+    
 )
-
-FetchContent_GetProperties(json)
-if(NOT json_POPULATED)
-    FetchContent_Populate(json)
-    add_subdirectory(${json_SOURCE_DIR} ${json_BINARY_DIR} EXCLUDE_FROM_ALL)
+if (nlohmann_json_ADDED)
+    add_library(nlohmann_json INTERFACE IMPORTED)
+    target_include_directories(nlohmann_json INTERFACE ${nlohmann_json_SOURCE_DIR}/include)
 endif()
 
 add_subdirectory(src)

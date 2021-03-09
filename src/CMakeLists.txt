@@ -11,5 +11,5 @@ target_include_directories(VgaDebugGenerator
 )
 
 target_link_libraries(VgaDebugGenerator
-    PRIVATE nlohmann_json::nlohmann_json
+    PRIVATE nlohmann_json
 )

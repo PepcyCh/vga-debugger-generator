@@ -1,3 +1,12 @@
+/*
+ * Description:
+ *   generate VGA scanning signal for 640x480 VGA screen
+ *   'clk' should be a 50MHz clock
+ * 
+ * Author:
+ *   Pepcy Chen
+ */
+
 module VgaController(
     input wire clk,
     input wire rst,
